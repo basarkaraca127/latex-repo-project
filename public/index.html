@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LaTeX Repo - Minimalist</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav>
+        <button onclick="switchView('discovery')">Keşfet</button>
+        <button onclick="switchView('create')">Yeni Oluştur</button>
+        <button onclick="switchView('my-projects')">Projelerim</button>
+    </nav>
+
+    <main id="app">
+        <!-- Discovery View -->
+        <section id="view-discovery" class="view">
+            <h2>Genel Projeler</h2>
+            <div class="search-box">
+                <input type="text" id="search-input" placeholder="Başlık veya açıklama ara..." oninput="filterExpressions()">
+                <select id="filter-tag" onchange="filterExpressions()">
+                    <option value="">Tüm Tagler</option>
+                </select>
+            </div>
+            <div id="discovery-list" class="list"></div>
+        </section>
+
+        <!-- Create View -->
+        <section id="view-create" class="view" style="display:none;">
+            <h2>Yeni LaTeX Projesi</h2>
+            <form id="latex-form">
+                <input type="text" id="title" placeholder="Proje Başlığı" required>
+                <textarea id="latexCode" placeholder="\begin{equation} ... \end{equation}" required></textarea>
+                <textarea id="description" placeholder="Açıklama (opsiyonel)"></textarea>
+                
+                <label>Etiket Seçin:</label>
+                <div id="tag-selector" class="tag-grid"></div>
+                
+                <select id="visibility">
+                    <option value="public">Kamuya Açık (Public)</option>
+                    <option value="private">Kişisel (Private - Gizli)</option>
+                </select>
+                <button type="submit">Kaydet</button>
+            </form>
+        </section>
+
+        <!-- My Projects View -->
+        <section id="view-my-projects" class="view" style="display:none;">
+            <h2>Benim Projelerim</h2>
+            <div id="my-list" class="list"></div>
+        </section>
+    </main>
+
+    <script src="main.js"></script>
+</body>
+</html>

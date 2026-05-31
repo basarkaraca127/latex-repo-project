@@ -1,0 +1,10 @@
+# Bağımlılıklar
+node_modules/
+
+# Veritabanı (Sunumda sıfırdan oluşması daha iyidir)
+project.db
+
+# Sistem dosyaları
+.DS_Store
+thumbs.db
+npm-debug.log*

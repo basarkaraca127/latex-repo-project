@@ -1,0 +1,66 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "LaTeX Repo API",
+    "version": "1.0.0",
+    "description": "Matematiksel İfade Deposu API Dokümantasyonu"
+  },
+  "paths": {
+    "/api/expressions": {
+      "get": {
+        "summary": "Tüm genel ifadeleri listeler",
+        "responses": { "200": { "description": "Başarılı" } }
+      },
+      "post": {
+        "summary": "Yeni bir LaTeX ifadesi ekler",
+        "responses": { "201": { "description": "Oluşturuldu" } }
+      }
+    },
+    "/api/expressions/{id}/download": {
+      "get": {
+        "summary": "İfadeyi .txt dosyası olarak indirir",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }
+        ]
+      }
+    },
+    "/api/expressions/{id}": {
+      "get": {
+        "summary": "ID ile spesifik bir ifadeyi getirir",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }
+        ],
+        "responses": { "200": { "description": "Başarılı" } }
+      },
+      "put": {
+        "summary": "Mevcut bir ifadeyi günceller",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { "type": "object", "properties": { "title": { "type": "string" }, "latexCode": { "type": "string" } } }
+            }
+          }
+        },
+        "responses": { "200": { "description": "Güncellendi" } }
+      },
+      "delete": {
+        "summary": "İfadeyi siler",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }
+        ],
+        "responses": { "200": { "description": "Silindi" } }
+      }
+    },
+    "/api/expressions/{id}/pdf": {
+      "get": {
+        "summary": "İfadeyi yerel LaTeX motoru (pdflatex) üzerinden PDF olarak derleyip indirir",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }
+        ]
+      }
+    }
+  }
+}
